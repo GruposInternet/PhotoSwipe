@@ -414,6 +414,16 @@ var PhotoSwipeUI_Default =
 		};
 
 
+	function _download() { 
+		var link = document.createElement('a');
+		var photoURL = image_url;
+		var ext = photoURL.length;
+		var slash = photoURL.lastIndexOf("/");
+		link.download = photoURL.substring(slash+1, ext);
+		link.href = image_url;
+		document.body.appendChild(link);
+		link.click();
+	}
 
 	var _uiElements = [
 		{ 
@@ -497,16 +507,6 @@ var PhotoSwipeUI_Default =
 		} 		
 
 	];
-	function _download() { 
-		var link = document.createElement('a');
-		var photoURL = image_url;
-		var ext = photoURL.length;
-		var slash = photoURL.lastIndexOf("/");
-		link.download = photoURL.substring(slash+1, ext);
-		link.href = image_url;
-		document.body.appendChild(link);
-		link.click();
-	}
 	var _setupUIElements = function() {
 		var item,
 			classAttr,
