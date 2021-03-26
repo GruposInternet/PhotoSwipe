@@ -63,6 +63,7 @@ var PhotoSwipeUI_Default =
 			captionEl: true,
 			fullscreenEl: true,
 			zoomEl: true,
+			downloadEl: true,
 			shareEl: true,
 			counterEl: true,
 			arrowEl: true,
@@ -486,10 +487,26 @@ var PhotoSwipeUI_Default =
 			onInit: function(el) {  
 				_loadingIndicator = el;
 			} 
-		}
+		},
+		{ 
+			name: 'button-download', 
+			option: 'downloadEl',
+			onTap: function() {
+				_download();
+			}
+		} 		
 
 	];
-
+	function _download() { 
+		var link = document.createElement('a');
+		var photoURL = image_url;
+		var ext = photoURL.length;
+		var slash = photoURL.lastIndexOf("/");
+		link.download = photoURL.substring(slash+1, ext);
+		link.href = image_url;
+		document.body.appendChild(link);
+		link.click();
+	}
 	var _setupUIElements = function() {
 		var item,
 			classAttr,
