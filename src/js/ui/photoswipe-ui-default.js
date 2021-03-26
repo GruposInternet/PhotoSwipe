@@ -414,13 +414,18 @@ var PhotoSwipeUI_Default =
 		};
 
 
+	
 	function _download() { 
+			
+		var  shareButtonData = _options.shareButtons[0];
+		var image_url = _options.getImageURLForShare(shareButtonData);
 		var link = document.createElement('a');
 		var photoURL = image_url;
 		var ext = photoURL.length;
 		var slash = photoURL.lastIndexOf("/");
 		link.download = photoURL.substring(slash+1, ext);
 		link.href = image_url;
+		link.target = '_blank';
 		document.body.appendChild(link);
 		link.click();
 	}
@@ -499,7 +504,7 @@ var PhotoSwipeUI_Default =
 			} 
 		},
 		{ 
-			name: 'button-download', 
+			name: 'button--download', 
 			option: 'downloadEl',
 			onTap: function() {
 				_download();
