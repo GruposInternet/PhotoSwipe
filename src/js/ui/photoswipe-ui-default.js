@@ -84,6 +84,9 @@ var PhotoSwipeUI_Default =
 			getImageURLForShare: function( /* shareButtonData */ ) {
 				return pswp.currItem.src || '';
 			},
+			getImageURLForDownload: function( /* shareButtonData */ ) {
+				return pswp.currItem.src || '';
+			},
 			getPageURLForShare: function( /* shareButtonData */ ) {
 				return window.location.href;
 			},
@@ -418,7 +421,7 @@ var PhotoSwipeUI_Default =
 	function _download() { 
 			
 		var  shareButtonData = _options.shareButtons[0];
-		var image_url = _options.getImageURLForShare(shareButtonData);
+		var image_url = _options.getImageURLForDownload(shareButtonData);
 		var link = document.createElement('a');
 		var photoURL = image_url;
 		var ext = photoURL.length;
