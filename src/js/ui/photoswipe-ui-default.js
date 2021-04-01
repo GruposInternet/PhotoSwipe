@@ -85,7 +85,7 @@ var PhotoSwipeUI_Default =
 				return pswp.currItem.src || '';
 			},
 			getImageURLForDownload: function( /* shareButtonData */ ) {
-				return pswp.currItem.src || '';
+				return pswp.currItem.download_src || '';
 			},
 			getPageURLForShare: function( /* shareButtonData */ ) {
 				return window.location.href;
