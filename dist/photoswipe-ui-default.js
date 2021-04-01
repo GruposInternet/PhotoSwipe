@@ -66,6 +66,7 @@ var PhotoSwipeUI_Default =
 			captionEl: true,
 			fullscreenEl: true,
 			zoomEl: true,
+			downloadEl: true,
 			shareEl: true,
 			counterEl: true,
 			arrowEl: true,
@@ -85,6 +86,9 @@ var PhotoSwipeUI_Default =
 			],
 			getImageURLForShare: function( /* shareButtonData */ ) {
 				return pswp.currItem.src || '';
+			},
+			getImageURLForDownload: function( /* shareButtonData */ ) {
+				return pswp.currItem.download_src || '';
 			},
 			getPageURLForShare: function( /* shareButtonData */ ) {
 				return window.location.href;
@@ -415,8 +419,20 @@ var PhotoSwipeUI_Default =
 
 		};
 
-
-
+		function _download() { 
+			
+			var  shareButtonData = _options.shareButtons[0];
+			var image_url = _options.getImageURLForDownload(shareButtonData);
+			var link = document.createElement('a');
+			var photoURL = image_url;
+			var ext = photoURL.length;
+			var slash = photoURL.lastIndexOf("/");
+			link.download = photoURL.substring(slash+1, ext);
+			link.href = image_url;
+			link.target = '_blank';
+			document.body.appendChild(link);
+			link.click();
+		}
 	var _uiElements = [
 		{ 
 			name: 'caption', 
@@ -488,8 +504,15 @@ var PhotoSwipeUI_Default =
 			option: 'preloaderEl',
 			onInit: function(el) {  
 				_loadingIndicator = el;
-			} 
-		}
+			}
+		},
+		{ 
+			name: 'button--download', 
+			option: 'downloadEl',
+			onTap: function() {
+				_download();
+			}
+		} 
 
 	];
 
